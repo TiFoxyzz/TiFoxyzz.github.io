@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #cc5c00; /* Daha koyu turuncu */
+            background-color: #b84e00; /* Daha koyu turuncu */
             margin: 0;
             padding: 0;
             color: white;
@@ -20,26 +20,32 @@
             font-weight: bold;
         }
 
-        .button {
-            display: block;
-            width: 330px;              /* Tuş genişletildi */
-            margin: 22px auto;
-            padding: 25px;             /* Tuş daha büyük */
-            background-color: #d9d9d9; /* Açık gri tuş */
-            color: #cc5c00;            /* Turuncu yazı */
-            font-size: 24px;           /* Daha büyük yazı */
+        .box {
+            width: 330px;
+            margin: 25px auto;
+            padding: 25px;
+            background-color: #d9d9d9; /* Gri kutu */
+            color: #b84e00;            /* Turuncu yazı */
+            font-size: 24px;
             font-weight: bold;
-            border-radius: 16px;       /* Daha oval görünüm */
+            border-radius: 16px;
+        }
+
+        .yt {
+            display: block;
+            width: 330px;
+            margin: 25px auto;
+            padding: 25px;
+            background-color: #d9d9d9;
+            color: #b84e00;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 16px;
             text-decoration: none;
-            transition: 0.2s;
         }
 
-        .button:hover {
+        .yt:hover {
             background-color: #ffffff;
-        }
-
-        .container {
-            margin-top: 60px;
         }
     </style>
 </head>
@@ -47,37 +53,24 @@
 
     <h1>TiFoxyzz Minecraft Sunucusu</h1>
 
-    <div class="container">
-
-        <!-- Java Sürümü -->
-        <a class="button" onclick="copyJava()">Java IP Kopyala<br>TiFoxyzz_LIVE.aternos.me</a>
-
-        <!-- Bedrock Sürümü -->
-        <a class="button" onclick="copyBedrock()">Bedrock IP Kopyala<br>TiFoxyzz_LIVE.aternos.me:15051</a>
-
-        <!-- Harita butonu -->
-        <a class="button" href="#" id="mapbtn">Harita (Yakında)</a>
-
-        <!-- YouTube Bağlantısı -->
-        <a class="button" href="https://www.youtube.com/@TiFoxyzz" target="_blank">
-            YouTube Kanalım
-        </a>
-
+    <div class="box">
+        Java IP:<br>
+        TiFoxyzz_LIVE.aternos.me
     </div>
 
-    <script>
-        function copyJava() {
-            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me").then(() => {
-                alert("Java IP kopyalandı!");
-            });
-        }
+    <div class="box">
+        Bedrock IP:<br>
+        TiFoxyzz_LIVE.aternos.me:15051
+    </div>
 
-        function copyBedrock() {
-            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me:15051").then(() => {
-                alert("Bedrock IP kopyalandı!");
-            });
-        }
-    </script>
+    <div class="box">
+        Harita: Yakında
+    </div>
+
+    <a class="yt" href="https://www.youtube.com/@TiFoxyzz" target="_blank">
+        YouTube Kanalım
+    </a>
 
 </body>
 </html>
+
