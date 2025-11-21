@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ff7b00; /* Turuncu arka plan */
+            background-color: #cc5c00; /* Daha koyu turuncu */
             margin: 0;
             padding: 0;
             color: white;
@@ -16,30 +16,30 @@
 
         h1 {
             margin-top: 40px;
-            font-size: 40px;
+            font-size: 48px;
             font-weight: bold;
         }
 
         .button {
             display: block;
-            width: 270px;
-            margin: 20px auto;
-            padding: 15px;
-            background-color: white; /* Beyaz tuş */
-            color: #ff7b00; /* Turuncu yazı */
-            font-size: 20px;
+            width: 330px;              /* Tuş genişletildi */
+            margin: 22px auto;
+            padding: 25px;             /* Tuş daha büyük */
+            background-color: #d9d9d9; /* Açık gri tuş */
+            color: #cc5c00;            /* Turuncu yazı */
+            font-size: 24px;           /* Daha büyük yazı */
             font-weight: bold;
-            border-radius: 12px;
+            border-radius: 16px;       /* Daha oval görünüm */
             text-decoration: none;
             transition: 0.2s;
         }
 
         .button:hover {
-            background-color: #ffe1c4;
+            background-color: #ffffff;
         }
 
         .container {
-            margin-top: 50px;
+            margin-top: 60px;
         }
     </style>
 </head>
@@ -55,7 +55,7 @@
         <!-- Bedrock Sürümü -->
         <a class="button" onclick="copyBedrock()">Bedrock IP Kopyala<br>TiFoxyzz_LIVE.aternos.me:15051</a>
 
-        <!-- Harita butonu (şimdilik boş) -->
+        <!-- Harita butonu -->
         <a class="button" href="#" id="mapbtn">Harita (Yakında)</a>
 
         <!-- YouTube Bağlantısı -->
@@ -67,13 +67,15 @@
 
     <script>
         function copyJava() {
-            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me");
-            alert("Java IP kopyalandı!");
+            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me").then(() => {
+                alert("Java IP kopyalandı!");
+            });
         }
 
         function copyBedrock() {
-            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me:15051");
-            alert("Bedrock IP kopyalandı!");
+            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me:15051").then(() => {
+                alert("Bedrock IP kopyalandı!");
+            });
         }
     </script>
 
