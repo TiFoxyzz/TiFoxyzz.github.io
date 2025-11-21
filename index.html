@@ -1,130 +1,176 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TiFoxyzz Sunucusu</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TiFoxyzz Network</title>
 <style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        font-family: 'Segoe UI', sans-serif;
-        color: white;
-    }
+  :root{
+    --orange:#ff7a00;
+    --dark:#0f0f0f;
+    --light-box:#e6e6e6;
+    --accent:#ff9a3b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:var(--dark);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    /* ARKA PLAN SLIDER */
-    .slider {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background-size: cover;
-        background-position: center;
-        animation: slide 18s infinite;
-        filter: brightness(0.75);
-    }
+  /* NAVBAR */
+  .nav{
+    position:fixed;left:0;right:0;top:0;
+    height:72px;padding:0 28px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
+    z-index:50;
+    backdrop-filter: blur(4px);
+  }
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}
+  .brand .fox {font-size:28px;margin-left:4px}
+  .nav-links{display:flex;gap:18px;align-items:center}
+  .nav-links a{
+    color:#ddd;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px;
+  }
+  .nav-links a:hover{color:white;background:rgba(255,255,255,0.03)}
 
-    @keyframes slide {
-        0%   { background-image: url('/mnt/data/93e7e96e-fe3e-42f5-ac78-1dc4ab50e8ad.png'); }
-        33%  { background-image: url('/mnt/data/6aaa3446-c5a3-456c-8f9d-a8cd756a4f6a.png'); }
-        66%  { background-image: url('/mnt/data/Ekran Kaydı 2025-11-22 002328.mp4'); }
-        100% { background-image: url('/mnt/data/93e7e96e-fe3e-42f5-ac78-1dc4ab50e8ad.png'); }
-    }
+  /* HERO + background slider */
+  .hero{
+    width:100vw;height:100vh;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;padding:100px 20px 40px;
+  }
 
-    /* MENÜ */
-    .topbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 20px;
-        text-align: center;
-        font-size: 22px;
-        backdrop-filter: blur(10px);
-    }
-    .topbar a {
-        color: white;
-        margin: 0 20px;
-        text-decoration: none;
-        font-weight: bold;
-    }
+  /* sliding/fading background images */
+  .bg-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .bg-slide{
+    position:absolute;inset:0;background-position:center;background-size:cover;
+    opacity:0;transform:scale(1.05);
+    animation:fadeSlide 18s linear infinite;
+  }
+  .bg-slide.s1{animation-delay:0s}
+  .bg-slide.s2{animation-delay:6s}
+  .bg-slide.s3{animation-delay:12s}
 
-    /* ORTA YAZI */
-    .center-box {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        animation: fadeIn 2s ease;
-    }
+  @keyframes fadeSlide{
+    0% {opacity:0; transform:scale(1.05) translateY(10px)}
+    6% {opacity:1; transform:scale(1) translateY(0)}
+    30% {opacity:1; transform:scale(1) translateY(0)}
+    36% {opacity:0; transform:scale(1.05) translateY(-10px)}
+    100% {opacity:0}
+  }
 
-    .title {
-        font-size: 55px;
-        font-weight: bold;
-        text-shadow: 0 0 20px black;
-    }
+  /* content box */
+  .hero-content{
+    position:relative;z-index:10;max-width:980px;width:100%;
+    text-align:center;padding:34px;border-radius:18px;
+    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
+    box-shadow:0 8px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
 
-    .subtitle {
-        margin-top: 15px;
-        font-size: 26px;
-        text-shadow: 0 0 20px black;
-    }
+  h1{font-size:48px;margin:6px 0 8px;letter-spacing:-1px}
+  h1 .accent{color:var(--orange)}
 
-    /* SAĞ PANEL */
-    .right-panel {
-        position: fixed;
-        right: 20px; top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+  p.lead{margin:0 0 18px;color:#e9e9e9;font-size:18px}
 
-    .panel-btn {
-        padding: 15px 20px;
-        background: rgba(0,0,0,0.5);
-        border-radius: 10px;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        transition: 0.2s;
-        backdrop-filter: blur(5px);
-    }
-    .panel-btn:hover {
-        background: rgba(255,255,255,0.2);
-    }
+  .ip-boxes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:14px 0 22px}
+  .ip{
+    background:rgba(255,255,255,0.08);color:#fff;padding:18px 22px;border-radius:12px;
+    min-width:280px;font-weight:700;font-size:16px;border:1px dashed rgba(255,255,255,0.06)
+  }
+
+  /* main CTA */
+  .cta-row{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .btn{
+    background:var(--orange);color:#fff;border:none;padding:16px 28px;border-radius:12px;
+    font-weight:800;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    display:inline-flex;gap:10px;align-items:center;text-decoration:none;
+  }
+  .btn.secondary{background:rgba(255,255,255,0.92);color:var(--orange);font-weight:800}
+  .yt-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:#fff;color:var(--orange);text-decoration:none;font-weight:800}
+
+  /* small text row */
+  .subrow{margin-top:12px;color:rgba(255,255,255,0.75);font-size:14px}
+
+  /* responsive */
+  @media (max-width:720px){
+    h1{font-size:28px}
+    .ip{min-width:unset;width:100%;text-align:center}
+    .hero{padding-top:90px}
+  }
 </style>
-
-<script>
-function copyIP() {
-    navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me");
-    alert("IP kopyalandı!");
-}
-</script>
 </head>
-
 <body>
 
-<div class="slider"></div>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="brand"><span class="fox">🦊</span> TiFoxyzz</div>
+    <nav class="nav-links">
+      <a href="/map">Harita</a>
+      <a href="/wiki">Wiki</a>
+      <!-- youtube button (kullanıcının verdiği kanal) -->
+      <a class="yt-btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">📺 YouTube</a>
+      <a class="btn secondary" id="copyBtn">Tıkla ve IP Adresini Kopyala</a>
+    </nav>
+  </header>
 
-<!-- Menü -->
-<div class="topbar">
-    <a href="#">Harita</a>
-    <a href="#">Wiki</a>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <!-- backgrounds (kendi yüklediğin görsellerin yerel yolları) -->
+    <div class="bg-wrap">
+      <div class="bg-slide s1" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003316.png');"></div>
+      <div class="bg-slide s2" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003352.png');"></div>
+      <div class="bg-slide s3" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003409.png');"></div>
+      <!-- koyu overlay -->
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));z-index:1"></div>
+    </div>
 
-<!-- Ortadaki Başlık -->
-<div class="center-box">
-    <div class="title">Tahta Yumruğunla Başla</div>
-    <div class="subtitle">Ve Her Adımı Anılara Dönüştür</div>
-</div>
+    <div class="hero-content" role="main" aria-label="TiFoxyzz hero">
+      <h1>🦊 <span class="accent">TiFoxyzz</span> Sunucusuna Hoş Geldin!</h1>
+      <p class="lead">Zirveler <strong>en iyiler</strong> için. Sonsuz macera ve gerçek oyuncu deneyimi.</p>
 
-<!-- Sağdaki Panel -->
-<div class="right-panel">
-    <div onclick="copyIP()" class="panel-btn">📋 IP'yi Kopyala</div>
-    <a href="https://youtube.com" class="panel-btn">▶ YouTube</a>
-    <a href="https://discord.com" class="panel-btn">💬 Discord</a>
-</div>
+      <div class="ip-boxes" aria-hidden="false">
+        <div class="ip">Java Sunucu IP: <strong>TiFoxyzz_LIVE.aternos.me</strong></div>
+        <div class="ip">Bedrock IP: <strong>TiFoxyzz_LIVE.aternos.me:15051</strong></div>
+      </div>
 
+      <div class="cta-row">
+        <button class="btn" id="bigCopy">TIKLA VE IP ADRESİNİ KOPYALA</button>
+        <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">YouTube Kanalım</a>
+      </div>
+
+      <div class="subrow">Harita ve Wiki menülerinden sunucu kaynaklarına ulaşabilirsin.</div>
+    </div>
+  </section>
+
+<script>
+  // Copy both IPs to clipboard as a single string
+  const javaIP = "TiFoxyzz_LIVE.aternos.me";
+  const bedrockIP = "TiFoxyzz_LIVE.aternos.me:15051";
+  function copyIPs() {
+    const text = "Java: " + javaIP + "  |  Bedrock: " + bedrockIP;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("IP'ler panoya kopyalandı:\n" + text);
+      }).catch(()=> {
+        fallbackCopy(text);
+      });
+    } else fallbackCopy(text);
+  }
+  function fallbackCopy(t){
+    const ta = document.createElement("textarea");
+    ta.value = t; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); alert("IP'ler panoya kopyalandı:\n" + t); }
+    catch(e){ alert("Kopyalama desteklenmiyor, manuel kopyalayın:\n" + t); }
+    ta.remove();
+  }
+
+  document.getElementById("bigCopy").addEventListener("click", copyIPs);
+  document.getElementById("copyBtn").addEventListener("click", copyIPs);
+</script>
 </body>
 </html>
 
