@@ -1,135 +1,175 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TiFoxyzz Network</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TiFoxyzz Network</title>
+<style>
+  :root{
+    --orange:#ff7a00;
+    --dark:#0f0f0f;
+    --light-box:#e6e6e6;
+    --accent:#ff9a3b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:var(--dark);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background-color: #0f0f0f;
-            color: white;
-        }
+  /* NAVBAR */
+  .nav{
+    position:fixed;left:0;right:0;top:0;
+    height:72px;padding:0 28px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
+    z-index:50;
+    backdrop-filter: blur(4px);
+  }
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}
+  .brand .fox {font-size:28px;margin-left:4px}
+  .nav-links{display:flex;gap:18px;align-items:center}
+  .nav-links a{
+    color:#ddd;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px;
+  }
+  .nav-links a:hover{color:white;background:rgba(255,255,255,0.03)}
 
-        /* NAVBAR */
-        .navbar {
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #181818;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 0 20px #0005;
-        }
+  /* HERO + background slider */
+  .hero{
+    width:100vw;height:100vh;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;padding:100px 20px 40px;
+  }
 
-        .navbar a {
-            color: white;
-            margin-left: 25px;
-            text-decoration: none;
-            font-size: 18px;
-            transition: 0.2s;
-        }
+  /* sliding/fading background images */
+  .bg-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .bg-slide{
+    position:absolute;inset:0;background-position:center;background-size:cover;
+    opacity:0;transform:scale(1.05);
+    animation:fadeSlide 18s linear infinite;
+  }
+  .bg-slide.s1{animation-delay:0s}
+  .bg-slide.s2{animation-delay:6s}
+  .bg-slide.s3{animation-delay:12s}
 
-        .navbar a:hover {
-            color: #ff7a00;
-        }
+  @keyframes fadeSlide{
+    0% {opacity:0; transform:scale(1.05) translateY(10px)}
+    6% {opacity:1; transform:scale(1) translateY(0)}
+    30% {opacity:1; transform:scale(1) translateY(0)}
+    36% {opacity:0; transform:scale(1.05) translateY(-10px)}
+    100% {opacity:0}
+  }
 
-        /* HERO */
-        .hero {
-            width: 100%;
-            height: 100vh;
-            background: url('https://i.imgur.com/JrWwF2Q.jpeg') no-repeat center center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 80px;
-        }
+  /* content box */
+  .hero-content{
+    position:relative;z-index:10;max-width:980px;width:100%;
+    text-align:center;padding:34px;border-radius:18px;
+    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
+    box-shadow:0 8px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
 
-        .hero h1 {
-            font-size: 55px;
-            font-weight: 900;
-            text-shadow: 0 0 15px #000;
-        }
+  h1{font-size:48px;margin:6px 0 8px;letter-spacing:-1px}
+  h1 .accent{color:var(--orange)}
 
-        .hero span {
-            color: #ff7a00;
-        }
+  p.lead{margin:0 0 18px;color:#e9e9e9;font-size:18px}
 
-        .hero p {
-            font-size: 25px;
-            text-shadow: 0 0 15px #000;
-            margin-top: 10px;
-        }
+  .ip-boxes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:14px 0 22px}
+  .ip{
+    background:rgba(255,255,255,0.08);color:#fff;padding:18px 22px;border-radius:12px;
+    min-width:280px;font-weight:700;font-size:16px;border:1px dashed rgba(255,255,255,0.06)
+  }
 
-        /* Button */
-        .btn {
-            margin-top: 30px;
-            padding: 18px 35px;
-            background-color: #ff7a00;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 15px #000;
-        }
+  /* main CTA */
+  .cta-row{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .btn{
+    background:var(--orange);color:#fff;border:none;padding:16px 28px;border-radius:12px;
+    font-weight:800;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    display:inline-flex;gap:10px;align-items:center;text-decoration:none;
+  }
+  .btn.secondary{background:rgba(255,255,255,0.92);color:var(--orange);font-weight:800}
+  .yt-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:#fff;color:var(--orange);text-decoration:none;font-weight:800}
 
-        .btn:hover {
-            background-color: #ff962f;
-        }
+  /* small text row */
+  .subrow{margin-top:12px;color:rgba(255,255,255,0.75);font-size:14px}
 
-        /* IP KUTUSU */
-        .ip-box {
-            background-color: #1c1c1c;
-            padding: 20px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 22px;
-            border: 2px dotted #ff7a00;
-        }
-    </style>
+  /* responsive */
+  @media (max-width:720px){
+    h1{font-size:28px}
+    .ip{min-width:unset;width:100%;text-align:center}
+    .hero{padding-top:90px}
+  }
+</style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <div style="font-size: 24px; font-weight: 700;">TiFoxyzz Network</div>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="brand"><span class="fox">🦊</span> TiFoxyzz</div>
+    <nav class="nav-links">
+      <a href="/map">Harita</a>
+      <a href="/wiki">Wiki</a>
+      <!-- youtube button (kullanıcının verdiği kanal) -->
+      <a class="yt-btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">📺 YouTube</a>
+      <a class="btn secondary" id="copyBtn">Tıkla ve IP Adresini Kopyala</a>
+    </nav>
+  </header>
 
-        <div>
-            <a href="#">Anasayfa</a>
-            <a href="#">Mağaza</a>
-            <a href="#">Destek</a>
-            <a href="#">Harita</a>
-            <a href="#">Wiki</a>
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <!-- backgrounds (kendi yüklediğin görsellerin yerel yolları) -->
+    <div class="bg-wrap">
+      <div class="bg-slide s1" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003316.png');"></div>
+      <div class="bg-slide s2" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003352.png');"></div>
+      <div class="bg-slide s3" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003409.png');"></div>
+      <!-- koyu overlay -->
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));z-index:1"></div>
     </div>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div>
-            <h1>ZİRVELER <span>EN İYİLER</span> İÇİNDİR</h1>
-            <p>SONSUZ MACERAYA HAZIRLAN!</p>
+    <div class="hero-content" role="main" aria-label="TiFoxyzz hero">
+      <h1>🦊 <span class="accent">TiFoxyzz</span> Sunucusuna Hoş Geldin!</h1>
+      <p class="lead">Zirveler <strong>en iyiler</strong> için. Sonsuz macera ve gerçek oyuncu deneyimi.</p>
 
-            <div class="ip-box">
-                Java IP: **TiFoxyzz_LIVE.aternos.me**
-            </div><br>
+      <div class="ip-boxes" aria-hidden="false">
+        <div class="ip">Java Sunucu IP: <strong>TiFoxyzz_LIVE.aternos.me</strong></div>
+        <div class="ip">Bedrock IP: <strong>TiFoxyzz_LIVE.aternos.me:15051</strong></div>
+      </div>
 
-            <div class="ip-box">
-                Bedrock IP: **TiFoxyzz_LIVE.aternos.me:15051**
-            </div><br>
+      <div class="cta-row">
+        <button class="btn" id="bigCopy">TIKLA VE IP ADRESİNİ KOPYALA</button>
+        <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">YouTube Kanalım</a>
+      </div>
 
-            <button class="btn">TIKLA VE IP ADRESİNİ KOPYALA</button>
-        </div>
+      <div class="subrow">Harita ve Wiki menülerinden sunucu kaynaklarına ulaşabilirsin.</div>
     </div>
+  </section>
 
+<script>
+  // Copy both IPs to clipboard as a single string
+  const javaIP = "TiFoxyzz_LIVE.aternos.me";
+  const bedrockIP = "TiFoxyzz_LIVE.aternos.me:15051";
+  function copyIPs() {
+    const text = "Java: " + javaIP + "  |  Bedrock: " + bedrockIP;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("IP'ler panoya kopyalandı:\n" + text);
+      }).catch(()=> {
+        fallbackCopy(text);
+      });
+    } else fallbackCopy(text);
+  }
+  function fallbackCopy(t){
+    const ta = document.createElement("textarea");
+    ta.value = t; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); alert("IP'ler panoya kopyalandı:\n" + t); }
+    catch(e){ alert("Kopyalama desteklenmiyor, manuel kopyalayın:\n" + t); }
+    ta.remove();
+  }
+
+  document.getElementById("bigCopy").addEventListener("click", copyIPs);
+  document.getElementById("copyBtn").addEventListener("click", copyIPs);
+</script>
 </body>
 </html>
