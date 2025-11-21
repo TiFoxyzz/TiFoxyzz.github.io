@@ -1,45 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>TiFoxyzz - Sunucu</title>
-  <style>
-    body {
-      background-color: #ff7b00;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiFoxyzz Resmi Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ff7b00; /* Turuncu arka plan */
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
 
-    .btn {
-      display: block;
-      width: 250px;
-      margin: 20px auto;
-      padding: 15px;
-      background-color: white;
-      color: #ff7b00;
-      font-size: 20px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 10px;
-    }
-  </style>
+        h1 {
+            margin-top: 40px;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: 270px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: white; /* Beyaz tuş */
+            color: #ff7b00; /* Turuncu yazı */
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background-color: #ffe1c4;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>TiFoxyzz Sunucusuna Hoş Geldin</h1>
+    <h1>TiFoxyzz Minecraft Sunucusu</h1>
 
-  <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">YouTube Kanalım</a>
+    <div class="container">
 
-  <a class="btn" onclick="navigator.clipboard.writeText('TiFoxyzz_LIVE.aternos.me')">
-    Sunucu IP Kopyala
-  </a>
+        <!-- Java Sürümü -->
+        <a class="button" onclick="copyJava()">Java IP Kopyala<br>TiFoxyzz_LIVE.aternos.me</a>
 
-  <a class="btn" onclick="navigator.clipboard.writeText('TiFoxyzz_LIVE.aternos.me:15051')">
-    Bedrock IP Kopyala
-  </a>
+        <!-- Bedrock Sürümü -->
+        <a class="button" onclick="copyBedrock()">Bedrock IP Kopyala<br>TiFoxyzz_LIVE.aternos.me:15051</a>
+
+        <!-- Harita butonu (şimdilik boş) -->
+        <a class="button" href="#" id="mapbtn">Harita (Yakında)</a>
+
+        <!-- YouTube Bağlantısı -->
+        <a class="button" href="https://www.youtube.com/@TiFoxyzz" target="_blank">
+            YouTube Kanalım
+        </a>
+
+    </div>
+
+    <script>
+        function copyJava() {
+            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me");
+            alert("Java IP kopyalandı!");
+        }
+
+        function copyBedrock() {
+            navigator.clipboard.writeText("TiFoxyzz_LIVE.aternos.me:15051");
+            alert("Bedrock IP kopyalandı!");
+        }
+    </script>
 
 </body>
 </html>
