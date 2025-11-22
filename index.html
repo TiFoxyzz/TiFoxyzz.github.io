@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TiFoxyzz | Tahta Yumruğu</title>
   <style>
     :root{
@@ -14,29 +14,36 @@
       --white: #ffffff;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--white)}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--white);background:#000}
 
+    /* background */
     .bg{
       position:fixed;inset:0;background-image:var(--bg-image);background-size:cover;background-position:center;z-index:-2;
     }
     .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.65));z-index:-1}
 
-    header{position:fixed;top:18px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    /* nav */
+    header{position:fixed;top:18px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;z-index:10}
     .nav-left{font-weight:800;letter-spacing:-0.5px}
     nav a{color:rgba(255,255,255,0.9);text-decoration:none;margin-left:18px;font-weight:600}
 
-    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+    /* center content */
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;z-index:5}
     .card{max-width:1100px;width:100%;padding:48px;border-radius:14px;background:var(--panel);backdrop-filter: blur(6px);display:flex;gap:32px;align-items:center}
 
     .hero{flex:1;text-align:center}
     .hero h1{font-size:72px;margin:0;line-height:0.95;font-weight:800;letter-spacing:-1px}
+    .hero h1 .accent{color:var(--accent)}
     .hero p{margin-top:16px;font-size:22px;color:rgba(255,255,255,0.92)}
 
+    /* right buttons */
     .side{width:320px;display:flex;flex-direction:column;gap:16px}
     .side .btn{background:var(--btn-bg);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--white);font-weight:700;display:flex;align-items:center;gap:12px;justify-content:flex-start;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
     .side .btn:hover{background:var(--btn-hover)}
+    .side .muted{font-weight:600;color:rgba(255,255,255,0.85);font-size:14px}
 
-    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:32px;background:rgba(0,0,0,0.7);color:white;padding:12px 18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:all .25s}
+    /* toast */
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:32px;background:rgba(0,0,0,0.7);color:white;padding:12px 18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:all .25s;z-index:9999}
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 
     @media (max-width:980px){
@@ -44,6 +51,9 @@
       .hero h1{font-size:44px}
       .side{width:100%}
     }
+
+    /* küçük stil düzeltmeleri */
+    a.btn { display:inline-flex; align-items:center; gap:10px; }
   </style>
 </head>
 <body>
@@ -53,6 +63,7 @@
     <div class="nav-left">TiFoxyzz</div>
     <nav>
       <a href="/wiki">Wiki</a>
+      <!-- Harita kaldırıldı -->
     </nav>
   </header>
 
@@ -65,19 +76,16 @@
       </div>
 
       <aside class="side" aria-label="Hızlı erişim">
-        <button class="btn" id="copyJavaBtn">📋 Java IP</button>
-        <button class="btn" id="copyBedrockBtn">📋 Bedrock IP</button>
-        <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">▶ YouTube</a>
-
-        <!-- YENİ HARİTA BUTONU -->
-        <a class="btn" href="https://tifoxyzz.github.io/map.html">📍 Harita</a>
-
+        <button class="btn" id="copyJavaBtn" title="Java IP kopyala">📋 Java IP</button>
+        <button class="btn" id="copyBedrockBtn" title="Bedrock IP kopyala">📋 Bedrock IP</button>
+        <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank" rel="noopener">▶ YouTube</a>
+        <!-- Harita butonu kaldırıldı -->
       </aside>
 
     </section>
   </main>
 
-  <div id="toast" class="toast">Kopyalandı!</div>
+  <div id="toast" class="toast" role="status" aria-live="polite">Kopyalandı!</div>
 
 <script>
   const javaIP = 'TiFoxyzz_LIVE.aternos.me';
@@ -97,8 +105,12 @@
     ta.value = txt;
     document.body.appendChild(ta);
     ta.select();
-    try{document.execCommand('copy');showToast('IP panoya kopyalandı: ' + txt);}
-    catch(e){alert('Kopyalama desteklenmiyor: ' + txt);}
+    try{
+      document.execCommand('copy');
+      showToast('IP panoya kopyalandı: ' + txt);
+    }catch(e){
+      alert('Kopyalama desteklenmiyor, manuel kopyalayın:\\n' + txt);
+    }
     ta.remove();
   }
 
@@ -110,9 +122,13 @@
     t._h = setTimeout(()=> t.classList.remove('show'), 2500);
   }
 
-  document.getElementById('copyJavaBtn').addEventListener('click', ()=> copyText(javaIP));
-  document.getElementById('copyBedrockBtn').addEventListener('click', ()=> copyText(bedrockIP));
-</script>
+  document.getElementById('copyJavaBtn').addEventListener('click', ()=>{
+    copyText(javaIP);
+  });
 
+  document.getElementById('copyBedrockBtn').addEventListener('click', ()=>{
+    copyText(bedrockIP);
+  });
+</script>
 </body>
 </html>
