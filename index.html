@@ -59,7 +59,6 @@
   <header>
     <div class="nav-left">TiFoxyzz</div>
     <nav>
-      <a href="/map">Harita</a>
       <a href="/wiki">Wiki</a>
     </nav>
   </header>
@@ -73,9 +72,10 @@
       </div>
 
       <aside class="side" aria-label="Hızlı erişim">
-        <button class="btn" id="copyIpBtn" title="Java ve Bedrock IP'lerini kopyala">📋 IP'yi Kopyala</button>
+        <button class="btn" id="copyJavaBtn" title="Java IP kopyala">📋 Java IP</button>
+        <button class="btn" id="copyBedrockBtn" title="Bedrock IP kopyala">📋 Bedrock IP</button>
         <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank" rel="noopener">▶ YouTube</a>
-        <button class="btn" id="mapBtn">📍 Harita (yakında)</button>
+        <button class="btn map-btn">📍 Harita (yakında)</button>
       </aside>
 
     </section>
@@ -105,12 +105,15 @@
     clearTimeout(t._h); t._h = setTimeout(()=> t.classList.remove('show'), 2500);
   }
 
-  document.getElementById('copyIpBtn').addEventListener('click', ()=>{
-    copyText(`Java: ${javaIP}  |  Bedrock: ${bedrockIP}`);
+  document.getElementById('copyJavaBtn').addEventListener('click', ()=>{
+    copyText(javaIP);
   });
 
-  document.getElementById('mapBtn').addEventListener('click', ()=>{
-    showToast('Harita yakında — biraz sabır!');
+  document.getElementById('copyBedrockBtn').addEventListener('click', ()=>{
+    copyText(bedrockIP);
+    });
+
+  
   });
 </script>
 </body>
