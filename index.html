@@ -1,176 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>TiFoxyzz Network</title>
-<style>
-  :root{
-    --orange:#ff7a00;
-    --dark:#0f0f0f;
-    --light-box:#e6e6e6;
-    --accent:#ff9a3b;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    background:var(--dark);
-    color:#fff;
-    -webkit-font-smoothing:antialiased;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TiFoxyzz | Tahta Yumruğu</title>
+  <style>
+    :root{
+      --accent:#ff7a00;
+      --bg-image: url('/mnt/data/A_digital_graphic_design_features_a_dark_grid-patt.png');
+      --panel: rgba(0,0,0,0.52);
+      --btn-bg: rgba(255,255,255,0.08);
+      --btn-hover: rgba(255,255,255,0.12);
+      --white: #ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--white)}
 
-  /* NAVBAR */
-  .nav{
-    position:fixed;left:0;right:0;top:0;
-    height:72px;padding:0 28px;
-    display:flex;align-items:center;justify-content:space-between;
-    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
-    z-index:50;
-    backdrop-filter: blur(4px);
-  }
-  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}
-  .brand .fox {font-size:28px;margin-left:4px}
-  .nav-links{display:flex;gap:18px;align-items:center}
-  .nav-links a{
-    color:#ddd;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px;
-  }
-  .nav-links a:hover{color:white;background:rgba(255,255,255,0.03)}
+    /* background */
+    .bg{
+      position:fixed;inset:0;background-image:var(--bg-image);background-size:cover;background-position:center;z-index:-2;
+    }
+    .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.65));z-index:-1}
 
-  /* HERO + background slider */
-  .hero{
-    width:100vw;height:100vh;position:relative;overflow:hidden;
-    display:flex;align-items:center;justify-content:center;padding:100px 20px 40px;
-  }
+    /* nav */
+    header{position:fixed;top:18px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .nav-left{font-weight:800;letter-spacing:-0.5px}
+    nav a{color:rgba(255,255,255,0.9);text-decoration:none;margin-left:18px;font-weight:600}
 
-  /* sliding/fading background images */
-  .bg-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
-  .bg-slide{
-    position:absolute;inset:0;background-position:center;background-size:cover;
-    opacity:0;transform:scale(1.05);
-    animation:fadeSlide 18s linear infinite;
-  }
-  .bg-slide.s1{animation-delay:0s}
-  .bg-slide.s2{animation-delay:6s}
-  .bg-slide.s3{animation-delay:12s}
+    /* center content */
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+    .card{max-width:1100px;width:100%;padding:48px;border-radius:14px;background:var(--panel);backdrop-filter: blur(6px);display:flex;gap:32px;align-items:center}
 
-  @keyframes fadeSlide{
-    0% {opacity:0; transform:scale(1.05) translateY(10px)}
-    6% {opacity:1; transform:scale(1) translateY(0)}
-    30% {opacity:1; transform:scale(1) translateY(0)}
-    36% {opacity:0; transform:scale(1.05) translateY(-10px)}
-    100% {opacity:0}
-  }
+    .hero{flex:1;text-align:center}
+    .hero h1{font-size:72px;margin:0;line-height:0.95;font-weight:800;letter-spacing:-1px}
+    .hero h1 .accent{color:var(--accent)}
+    .hero p{margin-top:16px;font-size:22px;color:rgba(255,255,255,0.92)}
 
-  /* content box */
-  .hero-content{
-    position:relative;z-index:10;max-width:980px;width:100%;
-    text-align:center;padding:34px;border-radius:18px;
-    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
-    box-shadow:0 8px 40px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.04);
-  }
+    /* right buttons */
+    .side{width:320px;display:flex;flex-direction:column;gap:16px}
+    .side .btn{background:var(--btn-bg);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--white);font-weight:700;display:flex;align-items:center;gap:12px;justify-content:flex-start;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+    .side .btn:hover{background:var(--btn-hover)}
+    .side .muted{font-weight:600;color:rgba(255,255,255,0.85);font-size:14px}
 
-  h1{font-size:48px;margin:6px 0 8px;letter-spacing:-1px}
-  h1 .accent{color:var(--orange)}
+    /* toast */
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:32px;background:rgba(0,0,0,0.7);color:white;padding:12px 18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:all .25s}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 
-  p.lead{margin:0 0 18px;color:#e9e9e9;font-size:18px}
-
-  .ip-boxes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:14px 0 22px}
-  .ip{
-    background:rgba(255,255,255,0.08);color:#fff;padding:18px 22px;border-radius:12px;
-    min-width:280px;font-weight:700;font-size:16px;border:1px dashed rgba(255,255,255,0.06)
-  }
-
-  /* main CTA */
-  .cta-row{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:8px}
-  .btn{
-    background:var(--orange);color:#fff;border:none;padding:16px 28px;border-radius:12px;
-    font-weight:800;font-size:18px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.4);
-    display:inline-flex;gap:10px;align-items:center;text-decoration:none;
-  }
-  .btn.secondary{background:rgba(255,255,255,0.92);color:var(--orange);font-weight:800}
-  .yt-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:#fff;color:var(--orange);text-decoration:none;font-weight:800}
-
-  /* small text row */
-  .subrow{margin-top:12px;color:rgba(255,255,255,0.75);font-size:14px}
-
-  /* responsive */
-  @media (max-width:720px){
-    h1{font-size:28px}
-    .ip{min-width:unset;width:100%;text-align:center}
-    .hero{padding-top:90px}
-  }
-</style>
+    @media (max-width:980px){
+      .card{flex-direction:column;padding:28px}
+      .hero h1{font-size:44px}
+      .side{width:100%}
+    }
+  </style>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"></div>
 
-  <!-- NAV -->
-  <header class="nav">
-    <div class="brand"><span class="fox">🦊</span> TiFoxyzz</div>
-    <nav class="nav-links">
+  <header>
+    <div class="nav-left">TiFoxyzz</div>
+    <nav>
       <a href="/map">Harita</a>
       <a href="/wiki">Wiki</a>
-      <!-- youtube button (kullanıcının verdiği kanal) -->
-      <a class="yt-btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">📺 YouTube</a>
-      <a class="btn secondary" id="copyBtn">Tıkla ve IP Adresini Kopyala</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <!-- backgrounds (kendi yüklediğin görsellerin yerel yolları) -->
-    <div class="bg-wrap">
-      <div class="bg-slide s1" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003316.png');"></div>
-      <div class="bg-slide s2" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003352.png');"></div>
-      <div class="bg-slide s3" style="background-image:url('/mnt/data/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-11-22%20003409.png');"></div>
-      <!-- koyu overlay -->
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));z-index:1"></div>
-    </div>
+  <main class="wrap">
+    <section class="card" role="region" aria-label="Tanıtım">
 
-    <div class="hero-content" role="main" aria-label="TiFoxyzz hero">
-      <h1>🦊 <span class="accent">TiFoxyzz</span> Sunucusuna Hoş Geldin!</h1>
-      <p class="lead">Zirveler <strong>en iyiler</strong> için. Sonsuz macera ve gerçek oyuncu deneyimi.</p>
-
-      <div class="ip-boxes" aria-hidden="false">
-        <div class="ip">Java Sunucu IP: <strong>TiFoxyzz_LIVE.aternos.me</strong></div>
-        <div class="ip">Bedrock IP: <strong>TiFoxyzz_LIVE.aternos.me:15051</strong></div>
+      <div class="hero">
+        <h1>Tahta Yumruğunla Başla</h1>
+        <p>Ve Her Adımı Anılara Dönüştür</p>
       </div>
 
-      <div class="cta-row">
-        <button class="btn" id="bigCopy">TIKLA VE IP ADRESİNİ KOPYALA</button>
-        <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank">YouTube Kanalım</a>
-      </div>
+      <aside class="side" aria-label="Hızlı erişim">
+        <button class="btn" id="copyIpBtn" title="Java ve Bedrock IP'lerini kopyala">📋 IP'yi Kopyala</button>
+        <a class="btn" href="https://www.youtube.com/@TiFoxyzz" target="_blank" rel="noopener">▶ YouTube</a>
+        <button class="btn" id="mapBtn">📍 Harita (yakında)</button>
+      </aside>
 
-      <div class="subrow">Harita ve Wiki menülerinden sunucu kaynaklarına ulaşabilirsin.</div>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Kopyalandı!</div>
 
 <script>
-  // Copy both IPs to clipboard as a single string
-  const javaIP = "TiFoxyzz_LIVE.aternos.me";
-  const bedrockIP = "TiFoxyzz_LIVE.aternos.me:15051";
-  function copyIPs() {
-    const text = "Java: " + javaIP + "  |  Bedrock: " + bedrockIP;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert("IP'ler panoya kopyalandı:\n" + text);
-      }).catch(()=> {
-        fallbackCopy(text);
-      });
-    } else fallbackCopy(text);
+  const javaIP = 'TiFoxyzz_LIVE.aternos.me';
+  const bedrockIP = 'TiFoxyzz_LIVE.aternos.me:15051';
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast('IP panoya kopyalandı: ' + text);
+    }catch(e){
+      fallbackCopy(text);
+    }
   }
-  function fallbackCopy(t){
-    const ta = document.createElement("textarea");
-    ta.value = t; document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); alert("IP'ler panoya kopyalandı:\n" + t); }
-    catch(e){ alert("Kopyalama desteklenmiyor, manuel kopyalayın:\n" + t); }
-    ta.remove();
+  function fallbackCopy(txt){
+    const ta = document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy'); showToast('IP panoya kopyalandı: ' + txt);}catch(e){alert('Kopyalama desteklenmiyor, manuel kopyalayın:\n' + txt);}ta.remove();
   }
 
-  document.getElementById("bigCopy").addEventListener("click", copyIPs);
-  document.getElementById("copyBtn").addEventListener("click", copyIPs);
+  function showToast(msg){
+    const t = document.getElementById('toast');t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._h); t._h = setTimeout(()=> t.classList.remove('show'), 2500);
+  }
+
+  document.getElementById('copyIpBtn').addEventListener('click', ()=>{
+    copyText(`Java: ${javaIP}  |  Bedrock: ${bedrockIP}`);
+  });
+
+  document.getElementById('mapBtn').addEventListener('click', ()=>{
+    showToast('Harita yakında — biraz sabır!');
+  });
 </script>
 </body>
 </html>
-
